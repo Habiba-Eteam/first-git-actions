@@ -1,6 +1,6 @@
 on :
   push:
-    braches:
+    branches:
       - master
 
 
@@ -16,8 +16,12 @@ jobs:
         run: ls
 
       - uses: actions/checkout@v3
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }} 
 
-      - name: 'login into dockerhub'
-        run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_TOKEN }} 
+      - name: 'Login to DockerHub'
+        run: |
+          echo "${{ secrets.DOCKER_TOKEN }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
 
