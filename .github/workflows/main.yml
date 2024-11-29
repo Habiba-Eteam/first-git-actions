@@ -17,7 +17,7 @@ jobs:
 
       - uses: actions/checkout@v3
 
-      - name: 'after'
-        run: ls  
+      - name: 'login into dockerhub'
+        run: docker login --username habibaeteam --password dckr_pat_ISzOZaFjdWmTQ3QcwF93NfNUR6I 
 
 
