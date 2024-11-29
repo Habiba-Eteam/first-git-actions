@@ -1,6 +1,6 @@
 on :
   push:
-    branches:
+    braches:
       - master
 
 
@@ -15,15 +15,9 @@ jobs:
       - name: 'before'
         run: ls
 
-      # Check out the repository code
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+     
+      - name: 'login into dockerhub'
+        run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_TOKEN }} 
 
-      # Login to DockerHub using secrets
-      - name: Login to DockerHub
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-        run: |
-          echo "${{ secrets.DOCKER_TOKEN }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
