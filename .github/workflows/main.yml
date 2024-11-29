@@ -12,10 +12,12 @@ jobs:
 
 
     steps:
-      - name: 'testing github actions'
-        run: pwd
+      - name: 'before'
+        run: ls
 
-      - name: 'testing printing'
-        run: echo halloworld 
+      - uses: actions/checkout@v3
+
+      - name: 'after'
+        run: ls  
 
 
